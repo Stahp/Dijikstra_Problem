@@ -1,0 +1,48 @@
+for the airport.csv,  column name:
+-----------------------------------------------------------
+A. AirportId  B. Airport Name C. City Name  D. Country E.IATA F.ICAO G.Latitude H. Longitude I. Altitude J.Time Zone  K.DST  L.Continent
+
+
+
+
+
+
+DST       The DST column shows the months in which Daylight Saving Time, a.k.a. Summer Time, begins and ends. A blank DST box usually indicates that the location stays on Standard Time all year, although in some cases the location stays on Summer Time all year. If a location is currently on DST, add one hour to the time in the Time column.
+
+
+https://en.wikipedia.org/wiki/List_of_airports_by_IATA_code:_E
+
+
+---------------------------------------------------------------------------
+For calculation of the distance between two airports ,we  can use this function below, or you can design your own one.
+
+from the url , 
+---------------------------------------------------------------------
+https://github.com/ekapope/Estimate-distance-between-two-latitude-longitude-locations-Python-
+
+
+we get this function in the Estimate-distance-between-two-latitude-longitude-locations-Python--master.zip
+---------------------------------------------------------------------------
+
+from math import sin, cos, sqrt, atan2, radians
+import pandas as pd
+
+# approximate radius of earth in meters
+def distance_cal(LatC,LongC,LatT,LongT):
+    R = 6373.0
+
+    lat1 = radians(LatC)
+    lon1 = radians(LongC)
+    lat2 = radians(LatT)
+    lon2 = radians(LongT)
+
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+    distance = R * c*1000
+
+#    print("Result:", distance)
+    return distance
